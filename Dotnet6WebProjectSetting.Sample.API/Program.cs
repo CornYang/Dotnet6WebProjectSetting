@@ -1,25 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+using Dotnet6WebProjectSetting.Sample.API;
 
-// Add services to the container.
+var builder = Host.CreateDefaultBuilder(args);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+builder.ConfigureWebHostDefaults(webBuilder =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    webBuilder.UseStartup<StartUp>();
+});
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+builder.Build().Run();
