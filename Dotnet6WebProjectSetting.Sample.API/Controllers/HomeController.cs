@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dotnet6WebProjectSetting.Sample.API.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 
@@ -19,6 +20,12 @@ namespace Dotnet6WebProjectSetting.Sample.API.Controllers
         {
             _logger.Info($"Helloworld");
             return "Helloworld";
+        }
+
+        [HttpPost]
+        public string Post(LoginModel login)
+        {
+            return $"Acct: {login.Account} Pwd: {login.Password}";
         }
     }
 }
